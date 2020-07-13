@@ -9,10 +9,12 @@ import {QUOTES} from "./quotes"
 // type is asking for next quote
 const NEXT = 'NEXT';
 
+let randomNum = Math.floor(Math.random() * QUOTES.length);
+
 const defaultState = {
-    quote: 'Naruto Rules',
-    author: 'Raman',
-    episode: ''
+    quote: QUOTES[randomNum].quote,
+    author: QUOTES[randomNum].author,
+    episode: QUOTES[randomNum].episode
 };
 
 const nextQuote = () => {
@@ -49,13 +51,18 @@ class QuoteMachine extends React.Component {
     }
     render() {
         return (
-            <div id="background">
-                <div id="quote-box" className="col-md-6">
-                    <h2>Quote Machine</h2>
-                    <button className="btn btn-primary btn-block" id="new-quote" onClick={this.handleChange}>New Quote</button>
-                    <q id="text">{this.props.quote}</q>
-                    <p id="author">- {this.props.author}</p>
-                    <p>{this.props.episode}</p>
+            <div id="background" className="min-vh-100">
+                <div className="row justify-content-md-center">
+                    <div id="quote-box" className="col-md-6 jumbotron min-vh-50">
+                        <h2 className="text-center">Quote Machine</h2>
+                        <p id="text" className="text-center">"{this.props.quote}"</p>
+                        <p id="author" className="font-weight-bold font-italic text-center">- {this.props.author}</p>
+                        {/*<p>{this.props.episode}</p>*/}
+                        <div className="row justify-content-md-center">
+                            <a href="#" className="col-md-2" id="tweet-quote"><i className="fa fa-twitter"></i></a>
+                            <button className="btn btn-primary col-xs-3" id="new-quote" onClick={this.handleChange}>New Quote</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

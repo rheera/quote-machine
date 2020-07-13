@@ -1,8 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
 
 #background {
   background-color: #EA9828;
+  background-size: cover;
+  height: 100%;
 }
 
 #quote-box {
+  background-color: white;
 }
