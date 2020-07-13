@@ -2,7 +2,11 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 import {QUOTES} from "./quotes"
+import './style.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
+
+//TODO comment and make quote box in the middle of the page vertically
 
 // Redux
 
@@ -50,8 +54,15 @@ class QuoteMachine extends React.Component {
         this.props.submitNewQuote()
     }
     render() {
+        function random_bg_color() {
+            let x = Math.floor(Math.random() * 256);
+            let y = Math.floor(Math.random() * 256);
+            let z = Math.floor(Math.random() * 256);
+            return "rgba(" + x + "," + y + "," + z + "," + 0.5 + ")";
+        }
+        let randCol = random_bg_color();
         return (
-            <div id="background" className="min-vh-100">
+            <div id="background" className="min-vh-100" style = {{backgroundColor: randCol}}>
                 <div className="row justify-content-md-center">
                     <div id="quote-box" className="col-md-6 jumbotron min-vh-50">
                         <h2 className="text-center">Quote Machine</h2>
@@ -59,8 +70,12 @@ class QuoteMachine extends React.Component {
                         <p id="author" className="font-weight-bold font-italic text-center">- {this.props.author}</p>
                         {/*<p>{this.props.episode}</p>*/}
                         <div className="row justify-content-md-center">
-                            <a href="#" className="col-md-2" id="tweet-quote"><i className="fa fa-twitter"></i></a>
-                            <button className="btn btn-primary col-xs-3" id="new-quote" onClick={this.handleChange}>New Quote</button>
+                            <a href={"https://twitter.com/intent/tweet?text=" + this.props.quote + "%0A- " +
+                            this.props.author} className="col-md-2" id="tweet-quote" target="_blank">
+                                <i className="fa fa-twitter" id="twitter-icon"  style = {{color: randCol}}></i></a>
+                            <button className="btn col-xs-3" id="new-quote"
+                                    style = {{backgroundColor: randCol, color: "#FFF"}}
+                                    onClick={this.handleChange}>New Quote</button>
                         </div>
                     </div>
                 </div>
